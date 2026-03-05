@@ -61,8 +61,10 @@ and improving control consistency.
 
 ---
 
+## How to Replicate this Project
+
 <details>
-<summary>🚀 How to Replicate This Project</summary>
+<summary>Steps to Replicate This Project</summary>
 
 ### Prerequisites
 - A free GitLab account (sign up at gitlab.com)
