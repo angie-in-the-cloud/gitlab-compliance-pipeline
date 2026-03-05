@@ -38,6 +38,7 @@ and improving control consistency.
 - Patch Level Current
 
 > If any control is `False`, the pipeline exits with code 1 (failed).
+
 > If all controls are `True`, the pipeline passes.
 
 ---
@@ -52,11 +53,11 @@ and improving control consistency.
 ## Screenshots
 ### Pipeline Failure (control non-compliant)
 
-![Pipeline-failure](./screenshots/pipeline-failure.png)
+![Pipeline-failure](./screenshots/pipeline-failure.PNG)
 
 ### Pipeline Pass (all controls compliant)
 
-![Pipeline-Success](./screenshots/pipeline-pass.png)
+![Pipeline-Success](./screenshots/pipeline-pass.PNG)
 
 ---
 
