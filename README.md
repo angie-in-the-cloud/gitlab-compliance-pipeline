@@ -5,9 +5,50 @@ A GitLab CI/CD pipeline that simulates automated compliance control validation, 
 ---
 
 ## Purpose
+
 Demonstrates how CI/CD pipelines can enforce compliance controls 
 automatically on every code commit, reducing manual audit effort 
 and improving control consistency.
+
+---
+
+## Architecture Flow
+
+Your Repository
+│
+├── .gitlab-ci.yml        ← pipeline instructions (defines stages and commands)
+└── compliance_check.py   ← Python script containing the compliance control logic
+        ↓
+Developer commits (saves a change) to the files in the repository
+        ↓
+GitLab Pipeline starts
+(GitLab reads .gitlab-ci.yml to understand what jobs to run)
+        ↓
+GitLab Runner starts environment
+(a temporary machine used to execute the pipeline jobs)
+        ↓
+Runner executes the commands defined in .gitlab-ci.yml
+Example command:
+python compliance_check.py
+        ↓
+This command runs the Python script: compliance_check.py
+        ↓
+The Python script checks the controls
+(MFA Enabled, Encryption at Rest, Logging Enabled, Patch Level Current)
+        ↓
+Python script returns success or failure
+        ↓
+exit(1)  → Pipeline Fail ❌ (stops here — Test and Report stages do not run)
+        ↓
+exit(0)  → **Stage 1: Validate** passes ✅
+        ↓
+**Stage 2: Test** (run-tests)
+Confirms pipeline environment and dependencies are healthy
+        ↓
+**Stage 3: Report** (generate-report)
+Logs completion timestamp for audit trail purposes
+        ↓
+All stages pass → Pipeline Pass ✅
 
 ---
 
