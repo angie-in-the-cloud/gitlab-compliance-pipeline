@@ -13,7 +13,7 @@ and improving control consistency.
 ---
 
 ## Architecture Flow
-
+```mermaid
 flowchart TD
     A["🗂️ Your Repository\n(.gitlab-ci.yml + compliance_check.py)"]
     B["👨‍💻 Developer commits a change"]
@@ -31,6 +31,7 @@ flowchart TD
     A --> B --> C --> D --> E --> F --> G
     G -- "exit(1)" --> H
     G -- "exit(0)" --> I --> J --> K --> L
+```
 
 ---
 
