@@ -14,43 +14,23 @@ and improving control consistency.
 
 ## Architecture Flow
 
-```
-Your Repository
-│
-├── .gitlab-ci.yml        ← pipeline instructions (defines stages and commands)
-└── compliance_check.py   ← Python script containing the compliance control logic
-        ↓
-Developer commits (saves a change) to the files in the repository
-        ↓
-GitLab Pipeline starts
-(GitLab reads .gitlab-ci.yml to understand what jobs to run)
-        ↓
-GitLab Runner starts environment
-(a temporary machine used to execute the pipeline jobs)
-        ↓
-Runner executes the commands defined in .gitlab-ci.yml
-Example command:
-python compliance_check.py
-        ↓
-This command runs the Python script: compliance_check.py
-        ↓
-The Python script checks the controls
-(MFA Enabled, Encryption at Rest, Logging Enabled, Patch Level Current)
-        ↓
-Python script returns success or failure
-        ↓
-exit(1)  → Pipeline Fail ❌ (stops here — Test and Report stages do not run)
-        ↓
-exit(0)  → Stage 1: Validate passes ✅
-        ↓
-Stage 2: Test (run-tests)
-Confirms pipeline environment and dependencies are healthy
-        ↓
-Stage 3: Report (generate-report)
-Logs completion timestamp for audit trail purposes
-        ↓
-All stages pass → Pipeline Pass ✅
-```
+flowchart TD
+    A["🗂️ Your Repository\n(.gitlab-ci.yml + compliance_check.py)"]
+    B["👨‍💻 Developer commits a change"]
+    C["⚙️ GitLab Pipeline starts\n(reads .gitlab-ci.yml)"]
+    D["🖥️ GitLab Runner starts environment\n(temporary machine)"]
+    E["▶️ Runner executes: python compliance_check.py"]
+    F["🔍 Script checks controls\n(MFA, Encryption, Logging, Patch Level)"]
+    G{"Pass or Fail?"}
+    H["❌ Pipeline Fail\nStops here — Test & Report do not run"]
+    I["✅ Stage 1: Validate passes"]
+    J["🧪 Stage 2: Test\nConfirms environment is healthy"]
+    K["📋 Stage 3: Report\nLogs timestamp for audit trail"]
+    L["✅ Pipeline Pass — all stages complete"]
+
+    A --> B --> C --> D --> E --> F --> G
+    G -- "exit(1)" --> H
+    G -- "exit(0)" --> I --> J --> K --> L
 
 ---
 
