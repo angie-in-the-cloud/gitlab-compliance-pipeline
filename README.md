@@ -6,9 +6,7 @@ A GitLab CI/CD pipeline that simulates automated compliance control validation, 
 
 ## Purpose
 
-Demonstrates how CI/CD pipelines can enforce compliance controls 
-automatically on every code commit, reducing manual audit effort 
-and improving control consistency.
+Demonstrates how CI/CD pipelines can enforce compliance controls automatically on every code commit, reducing manual audit effort and improving control consistency.
 
 ---
 
