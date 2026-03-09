@@ -15,22 +15,23 @@ and improving control consistency.
 ## Architecture Flow
 ```mermaid
 flowchart TD
-    A["🗂️ Your Repository\n(.gitlab-ci.yml + compliance_check.py)"]
-    B["👨‍💻 Developer commits a change"]
-    C["⚙️ GitLab Pipeline starts\n(reads .gitlab-ci.yml)"]
-    D["🖥️ GitLab Runner starts environment\n(temporary machine)"]
-    E["▶️ Runner executes: python compliance_check.py"]
-    F["🔍 Script checks controls\n(MFA, Encryption, Logging, Patch Level)"]
-    G{"Pass or Fail?"}
-    H["❌ Pipeline Fail\nStops here — Test & Report do not run"]
-    I["✅ Stage 1: Validate passes"]
-    J["🧪 Stage 2: Test\nConfirms environment is healthy"]
-    K["📋 Stage 3: Report\nLogs timestamp for audit trail"]
-    L["✅ Pipeline Pass — all stages complete"]
+    A["Your Repository\n─────────────────────────────\n├── .gitlab-ci.yml  ← pipeline instructions, defines stages and commands\n└── compliance_check.py  ← Python script containing the compliance control logic"]
+    B["Developer commits a change to the files in the repository"]
+    C["GitLab Pipeline starts\nGitLab reads .gitlab-ci.yml to understand what jobs to run"]
+    D["GitLab Runner starts environment\nA temporary machine used to execute the pipeline jobs"]
+    E["Runner executes the commands defined in .gitlab-ci.yml\nExample command: python compliance_check.py"]
+    F["This command runs the Python script: compliance_check.py"]
+    G["The Python script checks the controls\nMFA Enabled | Encryption at Rest | Logging Enabled | Patch Level Current"]
+    H{"Python script returns\nsuccess or failure"}
+    I["❌ exit(1) → Pipeline Fail\nStops here — Test and Report stages do not run"]
+    J["✅ exit(0) → Stage 1: Validate passes"]
+    K["Stage 2: Test (run-tests)\nConfirms pipeline environment and dependencies are healthy"]
+    L["Stage 3: Report (generate-report)\nLogs completion timestamp for audit trail purposes"]
+    M["✅ All stages pass → Pipeline Pass"]
 
-    A --> B --> C --> D --> E --> F --> G
-    G -- "exit(1)" --> H
-    G -- "exit(0)" --> I --> J --> K --> L
+    A --> B --> C --> D --> E --> F --> G --> H
+    H -- "exit(1)" --> I
+    H -- "exit(0)" --> J --> K --> L --> M
 ```
 
 ---
