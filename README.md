@@ -14,6 +14,7 @@ and improving control consistency.
 
 ## Architecture Flow
 
+```
 Your Repository
 │
 ├── .gitlab-ci.yml        ← pipeline instructions (defines stages and commands)
@@ -49,6 +50,7 @@ Confirms pipeline environment and dependencies are healthy
 Logs completion timestamp for audit trail purposes
         ↓
 All stages pass → Pipeline Pass ✅
+```
 
 ---
 
