@@ -41,12 +41,12 @@ Python script returns success or failure
         ↓
 exit(1)  → Pipeline Fail ❌ (stops here — Test and Report stages do not run)
         ↓
-exit(0)  → **Stage 1: Validate** passes ✅
+exit(0)  → Stage 1: Validate passes ✅
         ↓
-**Stage 2: Test** (run-tests)
+Stage 2: Test (run-tests)
 Confirms pipeline environment and dependencies are healthy
         ↓
-**Stage 3: Report** (generate-report)
+Stage 3: Report (generate-report)
 Logs completion timestamp for audit trail purposes
         ↓
 All stages pass → Pipeline Pass ✅
