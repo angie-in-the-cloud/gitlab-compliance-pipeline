@@ -78,7 +78,7 @@ Demonstrates how CI/CD pipelines can enforce compliance controls automatically o
 ### Step 1 - Create your GitLab project
 1. Go to [gitlab.com](https://gitlab.com) and sign in
 2. Click the **"+"** icon in the top navigation bar
-3. Select **"New project/repository"**
+3. Select **"New project"**
 4. Click **"Create blank project"**
 5. Enter your project name (e.g. `gitlab-compliance-pipeline`)
 6. Set visibility to **Public**
